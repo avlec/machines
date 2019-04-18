@@ -8,34 +8,10 @@ Email:  avlecxk@gmail.com
 #include <vector>
 #include <tuple>
 
-/*
-  This class defines the a unit of processing in a DFA.
- */
-class State {
-private:
-  std::string label;
-  bool start_state;
-  bool end_state;
-public:
-  State(std::string label, bool start_state, bool end_state);
-};
+#include "../include/State.hpp"
+#include "../include/Transition.hpp"
 
 
-/*
-  This class defines a transition from a state to a state.
- */
-class Transition {
-private:
-  State from;
-  State to;
-  char transition;
-
-public:
-  Transition(State from, State to);
-
-private:
-  Transition();
-};
 
 class DFA {
 private:
@@ -55,8 +31,8 @@ private:
 public:
 
   /*
-    This constructs a DFA with a single state, that is the start and end state.
-    This DFA has no transitions, and it accepts any symbol for its input.
+    This constructs a DFA with a single state which is the start state
+    and no accept states. The language of this machine is the empty set { }
    */
   DFA();
 
@@ -113,6 +89,24 @@ private:
   void reload_transitions();
 };
 
+DFA::DFA():
+  alphabet(""), input("")
+{
+  ;
+}
+DFA::DFA(std::vector<State> states, std::string alphabet, std::vector<Transition> transitions):
+  states(states), alphabet(alphabet), transitions(transitions), input("")
+{
+  ;
+}
+
+DFA::DFA(std::vector<State> states, std::string alphabet, std::vector<Transition> transitions, std::string input):
+  states(states), alphabet(alphabet), transitions(transitions), input(input)
+{
+  ;
+}
+}
+
 DFA DFA::operator +(State state)
 {
   std::vector<State> new_states(this->states);
@@ -165,5 +159,5 @@ void DFA::reload_transitions()
 
 int main()
 {
-  DFA x();
+  return 0;
 }
