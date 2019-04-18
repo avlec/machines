@@ -105,7 +105,6 @@ DFA::DFA(std::vector<State> states, std::string alphabet, std::vector<Transition
 {
   ;
 }
-}
 
 DFA DFA::operator +(State state)
 {
